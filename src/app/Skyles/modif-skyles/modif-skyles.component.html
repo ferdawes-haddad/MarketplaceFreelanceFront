@@ -1,0 +1,65 @@
+<div class="gray">
+    <div id="wrapper">
+    
+        <app-headear-utilisateur></app-headear-utilisateur>
+        <div class="dashboard-container">
+    
+            <app-sidebar></app-sidebar> 
+
+            <div class="dashboard-content-container" data-simplebar>
+                <div class="dashboard-content-inner" >
+                    <div class="dashboard-headline">
+                        <h3>Modifier un skill</h3>
+                        <nav id="breadcrumbs" class="dark">
+                            <ul>
+                                <li><a href="#">Accueil</a></li>
+                                <li><a href="#">Profil</a></li>
+                                <li><a href="/listSkyles">Liste des skyles</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+
+                    <div class="row">
+        
+                        <div class="col-xl-12">
+                            <div class="dashboard-box margin-top-0">
+                                <div class="headline">
+                                    <h3><i class="icon-feather-folder-plus"></i> Modifier </h3>
+                                </div>
+    
+                                <form (ngSubmit)="updateSkyles()">
+                                    <div class="content with-padding padding-bottom-10">
+                                        <div class="row">
+                                        
+                                            <div class="col-xl-4">
+                                                <div class="submit-field">
+                                                    <h5>Titre de compétences</h5>
+                                                    <input type="text"  class="form-control with-border" name="titre" required [(ngModel)]="sk.titre">
+                                                </div>
+                                            </div>
+            
+                                            <div class="col-xl-4">
+                                                <div class="submit-field">
+                                                    <h5>Type de compétence</h5>   
+                                                    <select class="selectpicker with-border" data-size="7" title="type" id="type" name="type" [(ngModel)]="sk.type">
+                                                        <option *ngFor="let o of typeSkyles" [value]="o.type">{{o.type}}</option> 
+                                                    </select>
+                                                </div>
+                                            </div>    
+                                        
+    
+                                            <div class="col-xl-12" >
+                                                <a (click)="updateSkyles()" type="submit" class="button ripple-effect big margin-top-30"><i class="icon-feather-edit"></i> Modifier</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+              
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

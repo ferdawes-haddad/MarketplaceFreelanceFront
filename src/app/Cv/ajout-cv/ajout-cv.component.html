@@ -1,0 +1,227 @@
+<div class="gray">
+    <app-headear-utilisateur></app-headear-utilisateur>
+	<div id="wrapper">
+		<div class="dashboard-container">
+			
+            <app-sidebar></app-sidebar>
+			<div class="dashboard-content-container" data-simplebar>
+				<div class="dashboard-content-inner" >
+                    <div class="login-register-page">
+
+                        <div class="dashboard-headline">
+                            <nav id="breadcrumbs" class="dark">
+                                <ul>
+                                    <li><a href="#">Accueil</a></li>
+                                    <li>Paramétres</li>
+                                </ul>
+                            </nav>
+                        </div>
+
+                        <div class="welcome-text margin-top-30">
+                            <h3>Des Informations Personnel</h3>
+                        </div>
+                        <div class="social-login-separator"><span>ou</span></div>
+
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="dashboard-box margin-top-0">
+    
+                                    <div class="headline">
+                                        <h3><i class="icon-feather-folder-plus"></i> Curriculum vitae</h3>
+                                    </div>
+    
+                                    <div class="content with-padding padding-bottom-10">
+                                        <div class="dashboard-box-list">
+
+                                            <form (ngSubmit)="addCv()" >
+
+                                                <div class="row">
+                                                        
+                                                    <p-toolbar styleClass="p-mb-4">
+                                                        <ng-template pTemplate="left">
+                                                            <a pButton pRipple href="#small-dialog-2" class="popup-with-zoom-anim button dark ripple-effect p-button-success p-mr-2"><i class="icon-feather-plus"></i> Ajout Skills </a>               
+                                                        </ng-template>
+                                                    </p-toolbar>
+                                
+                                                    <div class="content with-padding padding-bottom-0">
+                                                        <div class="row">
+                                
+                                                            <div class="col">
+                                                                <div class="row">
+                                                                    <!-- Nom d'etablisement -->
+                                                                    <div class="col-xl-4">
+                                                                        <div class="submit-field">
+                                                                            <div class="form-group">
+                                                                                <h5>Nom d'etablisement</h5>
+                                                                                <input type="text" class="form-control" name="nom_etablisement" placeholder="Entrer votre etablisement" [(ngModel)]="cv.nom_etablisement" />
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    
+                                                                    <!-- ville-->
+                                                                    <div class="col-xl-4">
+                                                                        <div class="submit-field">
+                                                                            <div class="form-group">
+                                                                                <h5>Ville</h5>
+                                                                                <input type="text" class="form-control" name="ville_etablisement" [(ngModel)]="cv.ville_etablisement" />
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+            
+                                                                   <!-- Domain d'etude -->
+                                                                   <div class="col-xl-4">
+                                                                        <div class="submit-field">
+                                                                            <div class="form-group">
+                                                                                <h5> Domain d'etude  </h5>
+                                                                                <input type="text" class="form-control" name="domain_etude" [(ngModel)]="cv.domain_etude" />
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+            
+                                                                    <!-- Date diplôme -->
+                                                                    <div class="col-xl-4">
+                                                                        <div class="submit-field">
+                                                                            <div class="form-group">
+                                                                                <h5>Date diplôme</h5>
+                                                                                <input type="date" class="form-control" name="date_diplome"  [(ngModel)]="cv.date_diplome" />
+                                                                            </div>
+                                                                       </div>
+                                                                    </div> 
+                                                                       
+                                                                    <!-- Skills -->
+                                                                    <div class="col-xl-4">
+                                                                        <div class="submit-field">
+                                                                            <div class="form-group">
+                                                                                <h5>Skills <i class="help-icon" data-tippy-placement="right" data-original-title="Add up to 10 skills"></i></h5>
+                                        
+                                                                                <div class="keywords-container">
+                                                                                
+                                                                                    <div class="keyword-input-container">
+                                                                                        
+                                                                                        <select class="selectpicker with-border form-control " data-size="7" title="Compétence"
+                                                                                            name="skyles_id" [(ngModel)]="SkylesCv.skills_id" multiple="oui">
+                                                                                            <option *ngFor="let skills of skillsCV" [value]="skills.id">{{skills.titre}} </option>                                                                                                                                               
+                                                                                        </select>
+                                                                                    </div> 
+                                                                                 
+                                                                                    <!--
+                                                                                    <div class="keywords-list" >
+                                                                                        <span class="keyword">
+                                                                                            <span class="keyword-remove"></span>
+                                                                                            <span class="keyword-text">Angular</span>
+                                                                                        </span>
+                                                                                    </div>-->
+                                                                                    <div class="clearfix"></div>
+                                                                                    
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+            
+                                                                    <!--Nom -->
+                                                                    <div class="col-xl-4">
+                                                                        <div class="submit-field">
+                                                                            <h5>Nom</h5>
+                                                                            <select class="selectpicker with-border form-control"  data-size="7" title="Select nom d'utilisateur" name="user_id" [(ngModel)]="cv.user_id">
+                                                                                <option *ngFor="let user of users" [value]="user.id"> {{user.nom}} </option>
+                                                                            </select>                                                                        
+                                                                        </div>
+                                                                    </div>
+                                                                                        
+                                                                </div>
+                                                            </div>
+            
+                                                        </div>
+                                                    </div>
+                                
+                                                    <div class="content with-padding padding-bottom-0">
+                                                        <div class="row">
+                                
+                                                            <div class="col">
+                                                                <div class="row">
+                                
+                                                                    <!-- Poste-->
+                                                                    <div class="col-xl-4">
+                                                                        <div class="submit-field">
+                                                                            <div class="form-group">
+                                                                                <h5>Poste</h5>
+                                                                                <input type="text" class="form-control" name="poste" placeholder="Entrer votre Poste" [(ngModel)]="cv.post_employer" />
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                
+                                                                    <!-- Date debut -->
+                                                                    <div class="col-xl-4">
+                                                                        <div class="submit-field">
+                                                                            <div class="form-group">
+                                                                                <h5>Date debut</h5>
+                                                                                <input type="date" class="form-control" name="date_debut" [(ngModel)]="cv.date_debut" />                                                                                        
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                
+                                                                    <!-- Date fin -->
+                                                                    <div class="col-xl-4">
+                                                                        <div class="submit-field">
+                                                                            <div class="form-group">
+                                                                                <h5>Date fin</h5>
+                                                                                <input type="date" class="form-control" name="date_fin" [(ngModel)]="cv.date_fin" />
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                
+                                                                  
+                                                </div>
+                    
+                                                <div class="col-xl-12">
+                                                    <a class="button ripple-effect big margin-top-30" type="submit" (click)="addCv()"><i class="icon-material-outline-add"></i> Ajout cv</a>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+
+                        
+
+                    </div>
+				</div>
+			</div>	  
+	
+		</div>
+	</div>
+
+</div>
+
+<div id="small-dialog-2" class="zoom-anim-dialog mfp-hide dialog-with-tabs">
+	<div class="sign-in-form">
+		<ul class="popup-tabs-nav">
+			<li><a href="#tab">Ajout skills</a></li>
+		</ul>
+
+		<div class="popup-tabs-container">
+			<div class="popup-tab-content" id="tab">
+                <app-ajout-skills></app-ajout-skills>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="small-dialog" class="zoom-anim-dialog mfp-hide dialog-with-tabs">
+    <div class="sign-in-form">
+        <ul class="popup-tabs-nav"></ul>
+        <div class="popup-tabs-container">
+            <div class="popup-tab-content" id="tab2">
+                <app-login></app-login>
+            </div>
+
+        </div>
+    </div>
+</div>

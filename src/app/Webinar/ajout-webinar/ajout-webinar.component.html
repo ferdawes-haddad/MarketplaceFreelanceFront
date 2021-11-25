@@ -1,0 +1,120 @@
+<div class="gray">
+    <div id="wrapper">
+
+        <app-headear-utilisateur></app-headear-utilisateur>
+
+        <div class="dashboard-container"> 
+
+            <app-sidebar></app-sidebar>
+            <div class="dashboard-content-container" data-simplebar>
+                <div class="dashboard-content-inner">
+
+                    <div class="dashboard-headline">
+                        
+
+                        <nav id="breadcrumbs" class="dark">
+                            <ul>
+                                <li><a href="/">Accueil</a></li>
+                                <li><a href="#">Profil</a></li>
+                                <li>Webinnar</li>
+                            </ul>
+                        </nav>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="dashboard-box margin-top-0">
+
+                                <div>
+                                    <img src="https://fld.welyne.com/wp-content/uploads/2020/03/Fotolia_70751280_M-©-Sergey-Nivens-Fotolia.com_-e1424277041862-1024x446.jpg" alt="" class="wp-image-21335" srcset="https://freelance-day.eu/wp-content/uploads/2020/03/Fotolia_70751280_M-©-Sergey-Nivens-Fotolia.com_-e1424277041862.jpg 1024w, https://freelance-day.eu/wp-content/uploads/2020/03/Fotolia_70751280_M-©-Sergey-Nivens-Fotolia.com_-e1424277041862-300x131.jpg 300w, https://freelance-day.eu/wp-content/uploads/2020/03/Fotolia_70751280_M-©-Sergey-Nivens-Fotolia.com_-e1424277041862-768x335.jpg 768w" sizes="(max-width: 1024px) 100vw, 1024px">
+                                </div>
+
+                                <div class="content with-padding padding-bottom-10">
+                                    <div class="dashboard-box-list">
+                                        <form (ngSubmit)="addWebinnar()">
+
+                                            <div class="col-xl-6">
+                                                <div class="submit-field">
+                                                    <div class="input-with-icon-left ">
+                                                        <i class="icon-material-outline-add"></i>
+                                                        <input type="text" class="input-text with-border" name="titre" [(ngModel)]="webinnar.titre" placeholder="Titre d'événement"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xl-6">
+                                                <div class="submit-field">
+                                                    <div class="input-with-icon-left ">
+                                                        <i class="icon-material-outline-add"></i>
+                                                        <input type="date" class="form-control with-border" name="date" [(ngModel)]="webinnar.date">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- <div class="col-xl-6">
+                                                <div class="submit-field">
+                                                    <div class="input-with-icon-left ">
+                                                        <i class="icon-material-outline-add"></i>
+                                                        <select class="selectpicker with-border form-control"  data-size="7" name="user" placeholder="Select votre nom"
+                                                           [(ngModel)]="webinnar.user_id">
+                                                           <option *ngFor="let c of user" [value]="c.id"> {{c.nom}} </option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div> -->
+
+                                            <!-- <div class="col-xl-6">
+                                                <div class="submit-field">
+                                                    <div class="input-with-icon-left ">
+                                                        <i class="icon-material-outline-add"></i>
+                                                        <select class="selectpicker with-border form-control"  data-size="7" name="user" placeholder="Select votre email"
+                                                           [(ngModel)]="webinnar.user_id">
+                                                           <option *ngFor="let c of user" [value]="c.id"> {{c.email}} </option>
+                                                        </select>
+                                                    </div> 
+                                                </div>
+                                            </div> -->
+
+                                            <div class="col-xl-6">
+                                                <div class="submit-field">
+                                                    <h5>Catégories</h5>
+                                                    <select class="selectpicker with-border form-control"  data-size="7" title="Select votre EMAIL" name="user"
+                                                        [(ngModel)]="webinnar.user_id">
+                                                        <option *ngFor="let c of user" [value]="c.id"> {{c.nom}} </option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xl-6">
+                                                <div class="submit-field">
+                                                    <select class="selectpicker with-border form-control"  data-size="7" title="Select votre EMAIL" name="user"
+                                                        [(ngModel)]="webinnar.user_id">
+                                                        <option *ngFor="let c of user" [value]="c.id"> {{c.email}} </option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                        
+                                            <div class="col-xl-12">
+                                                <a class="button margin-top-35 full-width button-sliding-icon ripple-effect mfp-close" type="submit" (click)="addWebinnar()">Ajouter 
+                                                    <i class="icon-material-outline-arrow-right-alt"></i>
+                                                </a>
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                </div>
+
+                            </div>
+                           
+
+                            
+                        
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

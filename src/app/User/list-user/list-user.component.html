@@ -1,0 +1,76 @@
+<div>
+    <app-headear-utilisateur></app-headear-utilisateur>
+    <div id="wrapper">
+        <div class="dashboard-container">
+            <app-sidebar></app-sidebar>
+            <div class="dashboard-content-container" data-simplebar>
+                <div class="dashboard-content-inner">
+
+                    <div class="section-headline margin-bottom-30">
+                        <h4>Liste des Freelancers</h4>
+                        <nav id="breadcrumbs" class="dark">
+                            <ul>
+                                <li><a href="#">Acceuil</a></li>
+                                <li>List</li>
+                            </ul>
+                        </nav>
+                    </div>
+
+                    <p-table #dt [value]="user" [rows]="10" [paginator]="true"
+                        [globalFilterFields]="['name','email','adresse']" [(selection)]="selectedUser" [rowHover]="true"
+                        dataKey="id"
+                        currentPageReportTemplate="Affichage {first} à {last} de {totalRecords} freelancers"
+                        [showCurrentPageReport]="true">
+                        <ng-template pTemplate="caption">
+                            <div class="p-d-flex p-ai-center p-jc-between">
+                                <span class="p-input-icon-left">
+                                    <i class="pi pi-search"></i>
+                                    <input pInputText type="text"
+                                        (input)="dt.filterGlobal($event.target.value, 'contains')"
+                                        placeholder="Recherche..." />
+                                </span>
+                            </div>
+                        </ng-template>
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th style="width: 3rem">
+                                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                                </th>
+                                <th pSortableColumn="image">Image <p-sortIcon field="image"></p-sortIcon>
+                                </th>
+                                <th pSortableColumn="nom">Nom <p-sortIcon field="nom"></p-sortIcon>
+                                </th>
+                                <th pSortableColumn="prenom">Prénom <p-sortIcon field="prenom"></p-sortIcon>
+                                </th>
+                                <th pSortableColumn="adresse">Adresse <p-sortIcon field="adresse"></p-sortIcon>
+                                </th>
+                                <th pSortableColumn="email">Email <p-sortIcon field="email"></p-sortIcon>
+                                </th>
+                                <th></th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-user>
+                            <tr>
+                                <td>
+                                    <p-tableCheckbox [value]="user"></p-tableCheckbox>
+                                </td>
+                                <td><img class="p-shadow-4" src="{{user.image}}"></td>
+                                <td>{{user.nom }}</td>
+                                <td>{{user.prenom }}</td>
+                                <td>{{user.adresse}}</td>
+                                <td>{{user.email}}</td>
+                                <td>
+                                    <button pButton pRipple icon="pi pi-pencil"
+                                        class="p-button-rounded p-button-success p-mr-2"
+                                        (click)="updateUser(user.id)"></button>
+                                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                                        (click)="deleteUser(user.nom, user.id)"></button>
+                                </td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+
+                </div>
+            </div>
+        </div>
+    </div>

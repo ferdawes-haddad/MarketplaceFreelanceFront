@@ -1,0 +1,110 @@
+<div class="gray">
+    <div id="wrapper">
+        
+    <div class="dashboard-container">
+
+        <div class="dashboard-content-container" data-simplebar>
+            <div class="dashboard-content-inner" >
+
+                <div class="dashboard-headline">
+                    <h3>Blogs</h3>
+
+                    <nav id="breadcrumbs" class="dark">
+                        <ul>
+                            <li><a href="#">Accueil</a></li>
+                            <li><a href="#">Profil</a></li>
+                            <li>Postuler un article</li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="dashboard-box margin-top-10">
+
+                            <div class="headline  padding-top-10 padding-bottom-15 col-sm-12">
+                                <h3><i class="icon-feather-folder-plus"></i> Postuler un article</h3>
+                            </div>
+    
+                            <div class="content with-padding padding-bottom-10" >
+                                <div class="dashboard-box-list">
+                                    
+                                    <form (ngSubmit)="updateBlog()">
+
+                                        <div class="col-xl-12">
+                                            <div class="dashboard-box margin-top-0">
+                                                <div class="row">
+
+                                                    <div class="col-auto">
+                                                        <div class="avatar-wrapper" data-tippy-placement="bottom" title="Ajouter image">
+                                                            <img class="profile-pic" src="images/user-avatar-placeholder.png" alt="" />
+                                                            <div class="upload-button"></div>
+                                                            <input class="uploadButton-input" id="upload" type="file" accept="image/*" name="image" #fileupload [(ngModel)]="blog.image" (change)="onSelectImage($event)" />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col">
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <div class="row">
+
+                                                                    <div class="col-xl-12">
+                                                                        <div class="submit-field">
+                                                                            <h5>Titre</h5>
+                                                                            <input type="text"  class="form-control with-border" name="titre" [(ngModel)]="blog.titre">
+                                                                        </div>
+                                                                    </div>
+                                                                
+                                                                    <div class="col-xl-12">
+                                                                        <div class="submit-field">
+                                                                            <h5>Description</h5>
+                                                                            <input type="textarea" class="form-control with-border" name="description"[(ngModel)]="blog.description">
+                                                                        </div>
+                                                                    </div>
+                            
+                                                                    <div class="col-xl-12">
+                                                                        <div class="submit-field">
+                                                                            <h5>Nom</h5>                                                    
+                                                                            <input type="text"  class="form-control with-border" name="nom" [(ngModel)]="blog.nom" >
+                                                                        </div>                                                         
+                                                                    </div>
+                            
+                                                                    <div class="col-xl-12">
+                                                                        <div class="submit-field">
+                                                                            <h5>Email</h5>
+                                                                            <input type="text"  class="form-control with-border" name="email" [(ngModel)]="blog.email">
+                                                                        </div>
+                                                                    </div>
+                            
+                                                                    <div class="col-xl-12">
+                                                                        <div class="submit-field">
+                                                                            <h5>Date</h5>
+                                                                            <input type="date"  class="form-control with-border" name="date" [(ngModel)]="blog.date">
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                      
+                                        <div class="col-xl-12" >
+                                          <a (click)="updateBlog()" class="button ripple-effect big margin-top-30" type="submit"><i class="icon-feather-plus"></i> Modifier article</a>
+                                        </div>
+                                    
+                                    </form>                                      
+                                </div>
+                            </div>
+                        </div>
+                    </div>  
+                </div>   
+                 
+            </div>
+        </div>
+    </div>
+    </div>
+</div>

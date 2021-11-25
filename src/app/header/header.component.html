@@ -1,0 +1,296 @@
+<header id="header-container" class="fullwidth">
+
+    <div id="header">
+        <div class="container">
+            <div class="left-side">
+
+                <div id="logo">
+                    <a href="index-2.html"><img src="assets/images/welyne.png" alt=""></a>
+                </div>
+
+                <nav id="navigation">
+                    <ul id="responsive">
+
+                        <li><a href="/" class="current">Accueil</a></li>
+                        <li><a href="#small-dialog" class=" popup-with-zoom-anim">Recherche mission </a></li>
+                        <li><a href="#small-dialog" class=" popup-with-zoom-anim">Recherche Freelance</a></li>
+                        <li><a href="#small-dialog" class=" popup-with-zoom-anim">Blog</a></li>
+                        <li><a href="#small-dialog" class=" popup-with-zoom-anim">webinar</a></li>
+                    </ul>
+                    
+                </nav>    
+                
+                <div class="clearfix"></div>                        
+            </div>
+
+            <div class="right-side">
+
+				<div class="header-widget">
+					<a href="#sign-in-dialog" class="popup-with-zoom-anim log-in-button"><span>Log In / Register</span></a>
+				</div>
+
+				<!-- Mobile Navigation Button -->
+				<span class="mmenu-trigger">
+					<button class="hamburger hamburger--collapse" type="button">
+						<span class="hamburger-box">
+							<span class="hamburger-inner"></span>
+						</span>
+					</button>
+				</span>
+
+			</div>
+
+        </div>
+    </div>
+</header>
+<div class="clearfix"></div>
+
+<div id="small-dialog" class="zoom-anim-dialog mfp-hide dialog-with-tabs">
+    <div class="sign-in-form">
+        <ul class="popup-tabs-nav"></ul>
+        <div class="popup-tabs-container">
+            <div class="popup-tab-content" id="tab2">
+                <app-login></app-login>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div id="sign-in-dialog" class="zoom-anim-dialog mfp-hide dialog-with-tabs">
+
+	<div class="sign-in-form">
+
+		<ul class="popup-tabs-nav">
+			<li><a href="#login">Se connecter</a></li>
+			<li><a href="#register">Inscription</a></li>
+		</ul>
+
+		<div class="popup-tabs-container">
+
+			<!-- Login -->
+			<div class="popup-tab-content" id="login">
+
+				<div class="welcome-text">
+					<h3>Nous sommes heureux de vous revoir!</h3>
+					<span>Vous n'avez pas de compte ? <a href="#" class="register-tab">S'inscrire!</a></span>
+				</div>
+					
+				<form (ngSubmit)="login()" [formGroup]= "formlogin">
+					<div class="input-with-icon-left">
+						<div class="submit-field">
+                            <div class="form-group">
+                                <i class="icon-material-baseline-mail-outline"></i>
+                                <input type="text" class="form-control" name="email" placeholder="Entrer votre adresse mail" 
+                                    formControlName="email" [ngClass]="{'is-invalid' : submitted && fl.email.errors}" [(ngModel)]="user.email"/>
+                                <div *ngIf="submitted && fl.email.errors" class="invalid.feedback">
+                                     <div *ngIf="fl.email.errors.email"> l'email doit être une adresse valide </div>
+                                </div>
+                            </div>
+                        </div>
+					</div>
+
+					<div class="input-with-icon-left">
+						<div class="submit-field">
+                            <div class="form-group">
+                                <i class="icon-material-outline-lock"></i>
+                                <input type="password" class="form-control" placeholder="Entrer votre adresse mot de passe" 
+                                    name="password" formControlName="password" [ngClass]="{'is-invalid' : submitted && fl.password.errors}" [(ngModel)]="user.password"/>
+                                <div *ngIf="submitted && fl.password.errors" class="invalid.feedback">
+                                    <div *ngIf="fl.password.errors.required"> le mot de passe est oblégatoire </div>
+                                    <div *ngIf="fl.password.errors.minlength"> le mot de passe doit contenir au moins 6 caractères </div>
+                                </div>
+                            </div>
+                        </div>
+					</div>
+					<a (click)="resetpassword(user.email)" class="forgot-password">Mot de passe oublié?</a>
+
+                    <div class="col-xl-12">
+                        <a class="button full-width button-sliding-icon ripple-effect big margin-top-10 mfp-close" type="submit" (click)="login()">
+                            <i class="icon-material-outline-arrow-right-alt"></i> Se connecter
+                        </a>
+                    </div>
+
+				</form>
+
+				<div class="social-login-separator"><span>ou</span></div>
+				<div class="social-login-buttons">
+					<button class="facebook-login ripple-effect"><i class="icon-brand-facebook-f"></i> Connectez-vous via Facebook</button>
+					<button class="google-login ripple-effect"><i class="icon-brand-google-plus-g"></i> Connectez-vous via Google+</button>
+				</div>
+
+			</div>
+
+			<!-- Register -->
+			<div class="popup-tab-content" id="register">
+
+				<div class="welcome-text">
+					<h3>Créer mon compte!</h3>
+				</div>
+
+				<form (ngSubmit)="register()" [formGroup]= "formRegister">
+
+                    <div class="row">
+                         <!-- image -->
+                         <div class="col-auto">
+                            <div class="avatar-wrapper" data-tippy-placement="bottom" title="Change Avatar">
+                                <img class="profile-pic" src="images/user-avatar-placeholder.png" alt="" />
+                                <div class="upload-button"></div>
+                                <input class="file-upload" type="file" (change)="onselectFile($event)" name="image" formControlName="image" [(ngModel)]="user.image" />
+                            </div>
+                        </div>
+
+                        <!-- Account Type -->
+                        <div class="col-xl-6">
+                            <div class="submit-field">
+                                <div class="form-group">
+                                    <h5>Account type</h5>   
+                                    <select class="selectpicker with-border form-control" data-size="15" id="role" name="role" 
+                                       [(ngModel)]="user.role" formControlName="role" [ngClass]="{'is-invalid' : submitted && fr.role.errors}">
+                                        <option *ngFor="let user of typeAcount" [value]="user.role" >{{user.role}}</option> 
+                                    </select>
+                                    <div *ngIf="submitted && fr.role.errors" class="invalid.feedback">
+                                        <div *ngIf="fr.role.errors.required"> Vous êtes Donneur d'ordre ou ESN  </div>
+                                    </div> 
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--nom-->
+                        <div class="col-xl-6">
+                            <div class="submit-field">
+                                <div class="form-group">
+                                    <h5>Nom</h5>
+                                    <input type="text" class="form-control" name="nom" formControlName="nom" 
+                                        [ngClass]="{'is-invalid' : submitted && fr.nom.errors}" [(ngModel)]="user.nom"/>
+                                    <div *ngIf="submitted && fr.nom.errors" class="invalid.feedback">
+                                         <div *ngIf="fr.nom.errors.required"> Ce champs est oblégatoire </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!--prenom-->
+                        <div class="col-xl-6">
+                            <div class="submit-field">
+                                <div class="form-group">
+                                    <h5> Prénom </h5>
+                                    <input type="text" class="form-control" name="prenom" formControlName="prenom" 
+                                        [ngClass]="{'is-invalid' : submitted && fr.prenom.errors}" [(ngModel)]="user.prenom"/>
+                                    <div *ngIf="submitted && fr.prenom.errors" class="invalid.feedback">
+                                         <div *ngIf="fr.prenom.errors.required"> Ce champs est oblégatoire  </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- adresse -->
+                        <div class="col-xl-6">
+                            <div class="submit-field">
+                                <div class="form-group">
+                                    <h5>Adresse</h5>
+                                    <input type="text" class="form-control" name="adresse" formControlName="adresse" 
+                                    [ngClass]="{'is-invalid' : submitted && fr.adresse.errors}" [(ngModel)]="user.adresse"/>
+                                    <div *ngIf="submitted && fr.adresse.errors" class="invalid.feedback">
+                                         <div *ngIf="fr.adresse.errors.required"> l'adresse est oblégatoire </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--telephone-->
+                        <div class="col-xl-6">
+                            <div class="submit-field">
+                                <div class="form-group">
+                                    <h5>téléphone</h5>
+                                    <input type="text" class="form-control" name="telephone" placeholder="Entrer votre numéro de téléphone" formControlName="telephone" 
+                                    [ngClass]="{'is-invalid' : submitted && fr.telephone.errors}" [(ngModel)]="user.telephone"/>
+                                    <div *ngIf="submitted && fr.telephone.errors" class="invalid.feedback">
+                                         <div *ngIf="fr.telephone.errors.required"> Ce champs est oblégatoire </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>           
+
+                        <!-- mail -->
+                        <div class="input-with-icon-left col-xl-6">
+                            <div class="submit-field">
+                                <div class="form-group">
+                                    <i class="icon-material-baseline-mail-outline"></i>
+                                    <input type="text" class="form-control" name="email" placeholder="Entrer votre adresse mail" 
+                                        formControlName="email" [ngClass]="{'is-invalid' : submitted && fr.email.errors}" [(ngModel)]="user.email"/>
+                                    <div *ngIf="submitted && fr.email.errors" class="invalid.feedback">
+                                         <div *ngIf="fr.email.errors.email"> l'email doit être une adresse valide </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- password -->
+					    <div class="input-with-icon-left col-xl-6" title="Should be at least 8 characters long" data-tippy-placement="bottom">						
+                            <div class="submit-field">
+                                <div class="form-group">
+                                    <i class="icon-material-outline-lock"></i>
+                                    <input type="password" class="form-control" name="password" formControlName="password" 
+                                    [ngClass]="{'is-invalid' : submitted && fr.password.errors}" [(ngModel)]="user.password"/>
+                                    <div *ngIf="submitted && fr.password.errors" class="invalid.feedback">
+                                        <div *ngIf="fr.password.errors.required"> le mot de passe est oblégatoire </div>
+                                        <div *ngIf="fr.password.errors.minlength"> le mot de passe doit contenir au moins 6 caractères </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- conf password -->
+					    <div class="input-with-icon-left col-xl-6">						
+                            <div class="submit-field">
+                                <div class="form-group">
+                                    <i class="icon-material-outline-lock"></i>
+                                    <input type="password" class="form-control" name="confirmPassword" formControlName="confirmPassword" 
+                                        [ngClass]="{'is-invalid' : submitted && fr.confirmPassword.errors}" [(ngModel)]="user.confirmPassword"/>
+                                    <div *ngIf="submitted && fr.confirmPassword.errors" class="invalid.feedback">
+                                        <div *ngIf="fr.confirmPassword.errors.required"> Confirmez le mot de passe est oblégatoire </div>
+                                        <div *ngIf="fr.confirmPassword.errors.mustMatch"> verifier votre mot de passe </div>
+                                    </div>                                
+                                </div>                                                        
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Button -->
+                    <div class="col-xl-12">
+                        <a class="margin-top-10 button full-width button-sliding-icon ripple-effect mfp-close" type="submit" (click)="register()"  formRegister="register-account-form"><i class="icon-material-outline-add"></i> Créer compte</a>
+                    </div>
+                    
+				</form>
+											
+				<!-- Social Login -->
+				<div class="social-login-separator"><span>ou</span></div>
+				<div class="social-login-buttons">
+					<button class="facebook-login ripple-effect"><i class="icon-brand-facebook-f"></i> S'inscrire via Facebook</button>
+					<button class="google-login ripple-effect"><i class="icon-brand-google-plus-g"></i> S'inscrire via Google+</button>
+				</div>
+
+			</div>
+
+            <ng-template pTemplate="body" let-product>
+                <tr>
+                    <td>
+                        <p-tableCheckbox [value]="product"></p-tableCheckbox>
+                    </td>
+                    <td>{{product.name}}</td>
+                    <td>{{product.price | currency:'USD'}}</td>
+                    <td>{{product.category}}</td>
+                    <td><p-rating [ngModel]="product.rating" [readonly]="true" [cancel]="false"></p-rating></td>
+                    <td><span [class]="'product-badge status-' + product.inventoryStatus.toLowerCase()">{{product.inventoryStatus}}</span></td>
+                    <td>
+                        <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editProduct(product)"></button>
+                        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteProduct(product)"></button>
+                    </td>
+                </tr>
+            </ng-template>
+
+		</div>
+	</div>
+</div>

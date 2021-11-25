@@ -1,0 +1,203 @@
+<div>
+    <div id="wrapper">
+
+        <app-headear-utilisateur></app-headear-utilisateur>
+
+        <div class="dashboard-container">
+
+            <app-sidebar></app-sidebar>
+
+            <div class="dashboard-content-container" data-simplebar>
+                <div class="dashboard-content-inner">
+
+                    <div class="dashboard-headline">
+                        <h3>List des Emplois</h3>
+
+                        <nav id="breadcrumbs" class="dark">
+                            <ul>
+                                <li><a href="/">Accueil</a></li>
+                                <li><a href="#">Profil</a></li>
+                                <li>Publier un Emplois</li>
+                            </ul>
+                        </nav> 
+                    </div>
+
+                    <div class="card">  
+ 
+                        <p-toolbar styleClass="p-mb-4">
+                            <ng-template pTemplate="left">
+                                <button pButton pRipple label=" nouvel emploi" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openNew()"></button>
+                                <button pButton pRipple [label]="Delete" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedEmplois()" [disabled]="!selectedEmplois || !selectedEmplois.length"></button>
+                            </ng-template>
+                        </p-toolbar>  
+                        
+                        <p-table #dt [value]="emplois" [rows]="10" [paginator]="true" [globalFilterFields]="['titre','adresse','salaire']"
+                            [(selection)]="selectedEmplois" [rowHover]="true" dataKey="id"
+                            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+                            <ng-template pTemplate="caption">
+                                <div class="p-d-flex p-ai-center p-jc-between">
+                                    <span class="p-input-icon-left">
+                                        <i class="pi pi-search"></i>
+                                        <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                                            placeholder="Search..." />
+                                    </span>
+                                </div>
+                            </ng-template>
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th style="width: 3rem">
+                                        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                                    </th>
+                                    <th pSortableColumn="titre">Titre <p-sortIcon field="titre"></p-sortIcon>
+                                    </th>
+                                    <th pSortableColumn="image">Image <p-sortIcon field="image"></p-sortIcon>
+                                    </th>
+                                    <th pSortableColumn="salaire">Prix <p-sortIcon field="salaire"></p-sortIcon>
+                                    </th>
+                                    <th pSortableColumn="description">Description <p-sortIcon field="description"></p-sortIcon>
+                                    </th>
+                                    <th pSortableColumn="adresse">Adresse <p-sortIcon field="adresse"></p-sortIcon>
+                                    </th>
+                                    <th pSortableColumn="date_creation">Date de création <p-sortIcon field="date_creation"></p-sortIcon>
+                                    </th>
+                                    <th pSortableColumn="categorie">Categorie <p-sortIcon field="categorie"></p-sortIcon>
+                                    </th>
+                                    <th pSortableColumn="rating">Reviews <p-sortIcon field="rating"></p-sortIcon>
+                                    </th>
+                                    <th>status</th>
+                                    <th></th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-emp>
+                                <tr>
+                                    <td>
+                                        <p-tableCheckbox [value]="emp"></p-tableCheckbox>
+                                    </td>
+                                    <td>{{emp.titre}}</td>
+                                    <td _ngcontent-obt-c114=""><img _ngcontent-obt-c114="" width="100" class="p-shadow-4" src="http://127.0.0.1:8000/img/{{emp.image}}"
+                                            alt="Bamboo Watch"></td>
+                                    <td>{{emp.salaire | currency:' DT '}}</td>
+                                    <td>{{emp.description}}</td>
+                                    <td>{{emp.adresse}}</td> 
+                                    <td>{{emp.date_creation}}</td>
+                                    <td>{{emp.categories_name.name}}</td> 
+                                    <td>
+                                        <p-rating [ngModel]="emp.rating" [readonly]="true" [cancel]="false"></p-rating>
+                                    </td>
+                                    <td>
+                                        <p-selectButton [options]="stateOptions" [(ngModel)]="emp.status" optionLabel="label"
+                                            optionValue="value"></p-selectButton>
+                                    </td>
+                                    <td>
+                                        <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editEmplois(emp.id)"></button>
+                                        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteEmplois(emp.titre, emp.id)"></button>
+                                    </td>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="summary">
+                                <div class="p-d-flex p-ai-center p-jc-between">
+                                    Au total il y a {{emplois ? emplois.length : 0 }} emplois.
+                                </div>
+                            </ng-template>
+                        </p-table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<!-- <p-dialog [(visible)]="emploisDialog" [style]="{width: '700px'}" header="Emploi Details" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+    
+        <div class="col-auto">
+            <div class="avatar-wrapper" data-tippy-placement="bottom" title="Change Avatar">
+                <img class="profile-pic" src="images/user-avatar-placeholder.png" alt="" />
+                <div class="upload-button"></div>
+                <input class="file-upload" type="file" (change)="onselectFile($event)" name="image" formControlName="image"
+                    [(ngModel)]="emplois.image" />
+            </div>
+        </div>
+    
+        <div class="p-field">
+            <label for="name">Titre</label>
+            <input type="text" pInputText id="titre" [(ngModel)]="emplois.titre" required autofocus />
+            <small class="p-invalid" *ngIf="submitted && !emplois.email">Titre is required.</small>
+        </div>
+
+        <div class="p-field">
+            <label for="name">Salaire</label>
+            <input type="text" pInputText id="salaire" [(ngModel)]="emplois.salaire" required autofocus />
+            <small class="p-invalid" *ngIf="submitted && !emplois.salaire">Salaire is required.</small>
+        </div>
+    
+        <div class="p-field">
+            <label for="name">Adresse</label>
+            <input type="text" pInputText id="adresse" [(ngModel)]="emplois.adresse" required autofocus />
+            <small class="p-invalid" *ngIf="submitted && !emplois.adresse">Adresse is required.</small>
+        </div>
+
+        <div class="p-field">
+            <label for="name">Categorie</label>
+            <input type="text" pInputText id="categorie" [(ngModel)]="emplois.categorie" required autofocus />
+            <small class="p-invalid" *ngIf="submitted && !emplois.categorie">Categorie is required.</small>
+        </div>
+    
+    
+        <div class="col-xl-12">
+            <div class="row">
+
+                <div class="col-xl-6">
+                    <div class="submit-field">
+                        <h5>Compétence technique</h5>
+                        <select class="selectpicker with-border form-control " data-size="7" title="Compétence technique"
+                            name="skyles_id" [(ngModel)]="emploisSkyles.skills_emplois_id">
+                            <option *ngFor="let emptech of empSkylesTechnique" [value]="emptech.id">{{emptech.titre}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-xl-6">
+                    <div class="submit-field">
+                        <h5>Compétence fonctionnels</h5>
+                        <select class="selectpicker with-border form-control " data-size="7" title="Compétence fonctionnel"
+                            name="skyles_id" [(ngModel)]="emploisSkyles.skills_emplois_id">
+                            <option *ngFor="let empfonc of empSkylesFonct" [value]="empfonc.id">{{empfonc.titre}} </option>
+                        </select>
+                    </div>
+                </div>
+    
+            </div>
+        </div>
+    
+        <div class="col-xl-12">
+    
+            <div class="row">
+
+                <div class="p-field">
+                    <label for="name">Date Creation</label>
+                    <input type="text" pInputText id="date_creation" [(ngModel)]="emplois.date_creation" required
+                        autofocus />
+                    <small class="p-invalid" *ngIf="submitted && !emplois.salaire">Date is required.</small>
+                </div>
+
+                <div class="p-field">
+                    <label for="name">Description</label>
+                    <input type="text" pInputText id="date_creation" [(ngModel)]="emplois.description" required autofocus />
+                    <small class="p-invalid" *ngIf="submitted && !emplois.description">Description is required.</small>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveProduct()"></button>
+    </ng-template>
+</p-dialog> -->
+
+<p-confirmDialog [style]="{width: '700px'}"></p-confirmDialog>
+

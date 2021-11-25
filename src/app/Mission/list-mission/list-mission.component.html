@@ -1,0 +1,94 @@
+<div class="gray">
+    <div id="wrapper">
+
+        <div class="dashboard-container">
+
+            <app-sidebar></app-sidebar>
+        
+            <div class="dashboard-content-container" >
+                <div class="dashboard-content-inner" >
+        
+                    <div class="dashboard-headline">
+                        <h3>Missions</h3>
+        
+                        <nav id="breadcrumbs" class="dark">
+                            <ul>
+                                <li><a href="/">Accueil</a></li>
+                                <li><a href="">Profil</a></li>
+                                <li>Publier une Mission</li>
+                            </ul>
+                        </nav>
+                    </div>
+        
+                    <div class="row">
+        
+                        <div class="notify-box margin-top-10">
+                            <div class="switch-container">
+                                <label class="switch"><input type="checkbox"><span class="switch-button"></span>
+                                    <span class="switch-text">Activer les alertes par e-mail pour cette recherche</span></label>
+                            </div>
+            
+                            <div class="sort-by">
+                                <span>Trier par:</span>
+                                <select class="selectpicker hide-tick">
+                                    <option>Pertinence</option>
+                                    <option>Le plus récent</option>
+                                    <option>Le plus ancien</option>
+                                    <option>Aléatoire</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- Dashboard Box -->
+                        <div class="col-xl-12">
+                            <div class="dashboard-box margin-top-10">
+        
+                                <!-- Headline -->
+                                <div class="headline  listings-container compact-list-layout margin-top-35">
+                                    <h3><i class="icon-material-outline-business-center"></i> Liste de Mission</h3>
+                                    <a href="tasks-list-layout-1.html" class="headline-link">Parcourir toutes les missions</a>
+                                </div>
+        
+                                <div class="content" *ngFor="let c of mission">
+                                    
+                                    <ul class="dashboard-box-list">
+                                        <li>
+                                            <div class="job-listing">
+                                                <div class="job-listing-details">
+
+                                                    <div class="job-listing-description">
+                                                        <h3 class="job-listing-title"><a href="#">{{c.titre}}</a> <span class="dashboard-status-button green">En attente de validation</span></h3>
+                                                        <div class="job-listing-footer">
+                                                           <!-- <ul>
+                                                                <li><i class="skills"></i>{{c.skyles_techniques}}</li>
+                                                                <li><i class="skills"></i>{{c.skyles_fonctinnels}}</li>
+                                                            </ul>-->
+                                                            <ul>
+                                                                <li><i class="icon-material-outline-date-range"></i>{{c.date_creation}}</li>
+                                                                <li><i class="icon-material-outline-date-range"></i>{{c.duree}}</li>
+                                                                <li><i class="fa fa-credit-card"></i>{{c.budget}}DT</li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+    
+                                            <div class="buttons-to-right always-visible">
+                                                <a class="button ripple-effect"><i class="icon-material-outline-supervisor-account"></i> Détails <span class="button-info">0</span></a>
+                                                <a class="button ripple-effect ico" title="Edit"  (click)="updateMission(c.id)" type="submit"><i class="icon-feather-edit"></i></a>
+                                                <a class="button ripple-effect ico" title="Remove" (click)="deleteMission(c.id)" type="submit"><i class="icon-feather-trash-2"></i></a>
+                                            </div>
+                                        </li>
+        
+                                    </ul>
+        
+                                </div>
+                            </div>
+                        </div>
+        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

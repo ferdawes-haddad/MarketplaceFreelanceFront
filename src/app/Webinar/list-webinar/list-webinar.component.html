@@ -1,0 +1,89 @@
+<div>
+    <div id="wrapper">
+
+        <app-headear-utilisateur></app-headear-utilisateur>
+
+        <div class="dashboard-container">
+
+            <app-sidebar></app-sidebar>
+
+            <div class="dashboard-content-container" data-simplebar>
+                <div class="dashboard-content-inner">
+
+                    <div class="dashboard-headline">
+                        <h3>List des webinars</h3>
+
+                        <nav id="breadcrumbs" class="dark">
+                            <ul>
+                                <li><a href="/">Accueil</a></li>
+                                <li><a href="#">Profil</a></li>
+                                <li>Publier un webinars</li>
+                            </ul>
+                        </nav> 
+                    </div>
+
+                    <div class="card">
+                        <p-toolbar styleClass="p-mb-4">
+                            <ng-template pTemplate="left">
+                                <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openNew()"></button>
+                                <button pButton pRipple [label]="Delete" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedWebinars()" [disabled]="!selectedWebinars || !selectedWebinars.length"></button>
+                            </ng-template>
+                        </p-toolbar>
+                    
+                        <p-table #dt [value]="webinar" [rows]="3" [paginator]="true" [globalFilterFields]="['users_name.email','date']"
+                            [(selection)]="selectedWebinars" [rowHover]="true" dataKey="id"
+                            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+                            <ng-template pTemplate="caption">
+                                <div class="p-d-flex p-ai-center p-jc-between">
+                                    <h5 class="p-m-0">Webinar</h5>
+                                    <span class="p-input-icon-left">
+                                        <i class="pi pi-search"></i>
+                                        <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search..." />
+                                    </span>
+                                </div>
+                            </ng-template>
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th style="width: 3rem">
+                                        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                                    </th>
+                                    <th pSortableColumn="titre">Titre <p-sortIcon field="titre"></p-sortIcon></th>
+                                    <th pSortableColumn="date">Date <p-sortIcon field="date"></p-sortIcon></th>
+                                    <th pSortableColumn="date">Nom d'ESN <p-sortIcon field="date"></p-sortIcon></th>
+                                    <th pSortableColumn="date">Email <p-sortIcon field="date"></p-sortIcon></th> 
+                                    <th></th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-webinars>
+                                <tr>
+                                    <td>
+                                        <p-tableCheckbox [value]="webinars"></p-tableCheckbox>
+                                    </td>
+                                    <td>{{webinars.titre}}</td>
+                                    <td>{{webinars.date}}</td>  
+                                     <td>{{webinars.users_name.nom}}</td>     
+                                    <td>{{webinars.users_name.email}}</td>    
+                                    <td>
+                                        <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editWebinars(webinars.id)"></button>
+                                        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteWebinars(webinars.titre, webinars.id)"></button>
+                                    </td>
+                                </tr>
+                            </ng-template>
+                        
+                        </p-table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+<p-confirmDialog [style]="{width: '700px'}"></p-confirmDialog>
+
+
+
+
+ 

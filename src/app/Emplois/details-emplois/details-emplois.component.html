@@ -1,0 +1,129 @@
+<div>
+
+<div class="single-page-header" data-background-image="assets/images/single-task.jpg">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="single-page-header-inner">
+					<div class="left-side">
+						<div class="header-image">{{emplois?.image}}</div>
+						<div class="header-details">
+							<h3>   {{emplois?.titre}}   </h3>
+							<li><div class="star-rating" data-rating=""></div></li>
+						</div>
+					</div>
+					<div class="right-side">
+						<div class="salary-box">
+							<div class="salary-type">Budget du projet</div>
+							<div class="salary-amount">{{emplois?.salaire}}$</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container">
+	<div class="row">
+
+		<div class="col-xl-8 col-lg-8 content-right-offset">
+
+			<div class="single-page-section">
+				<h3 class="margin-bottom-25">Project Description</h3>
+				<p>{{emplois?.description}}</p>
+			</div>
+
+			<div class="single-page-section" >              
+				<h3>Skills Required</h3>
+				<div class="task-tags">             
+					<span *ngFor="let s of empSkyles">{{s.titre}}</span>
+				</div>
+			</div>
+			<div class="clearfix"></div>
+
+			<div class="boxed-list margin-bottom-60">
+				<div class="boxed-list-headline">
+					<h3><i class="icon-material-outline-group"></i> Offres pour les freelancers </h3>
+				</div>
+				<ul class="boxed-list-ul">
+					<li>
+						<div class="bid">
+							<!-- Avatar -->
+							<div class="bids-avatar">
+								<div class="freelancer-avatar">
+									<div class="verified-badge"></div>
+									<a href="single-freelancer-profile.html"><img src="assets/images/user-avatar-big-01.jpg" alt=""></a>
+								</div>
+							</div>
+							
+							<!-- Content -->
+							<div class="bids-content">
+								<!-- Name -->
+								<div class="freelancer-name">
+									<h4><a href="single-freelancer-profile.html">Tom Smith <img class="flag" src="assets/images/flags/gb.svg" alt="" title="United Kingdom" data-tippy-placement="top"></a></h4>
+									<div class="star-rating" data-rating="4.9"></div>
+								</div>
+							</div>
+							
+							<!-- Bid -->
+							<div class="bids-bid">
+								<div class="bid-rate">
+									<div class="rate">$4,400</div>
+									<span>in 7 days</span>
+								</div>
+							</div>
+						</div>
+					</li>
+					
+				</ul>
+			</div>
+
+		</div>
+
+		<div class="col-xl-4 col-lg-4">
+			<div class="sidebar-container">
+
+				<div class="countdown green margin-bottom-35">6 jours, 23 heures restantes</div>
+
+				<div class="sidebar-widget">
+					<div class="bidding-widget">
+						<div class="bidding-headline"><h3>Offre de ce post!</h3></div>
+						<div class="bidding-inner">
+
+							<span class="bidding-detail">Définissez votre <strong>tarif minimal</strong></span>
+							<div class="bidding-value">$<span id="biddingVal"></span></div>
+							<input class="bidding-slider" type="text" value="" data-slider-handle="custom" data-slider-currency="$" data-slider-min="2500" data-slider-max="4500" data-slider-value="auto" data-slider-step="50" data-slider-tooltip="hide" />
+							<span class="bidding-detail margin-top-30">Définissez votre <strong>Heure de livraison</strong></span>
+
+							<div class="bidding-fields">
+								<div class="bidding-field">
+									<div class="qtyButtons">
+										<div class="qtyDec"></div>
+										<input type="text" name="qtyInput" value="1">
+										<div class="qtyInc"></div>
+									</div>
+								</div>
+								<div class="bidding-field">
+									<select class="selectpicker default">
+										<option selected>Jours</option>
+										<option>Heures</option>
+									</select>
+								</div>
+							</div>
+
+							<button id="snackbar-place-bid" class="button ripple-effect move-on-hover full-width margin-top-30"><span>Place une offre</span></button>
+
+						</div>
+						<div class="bidding-signup">Vous n'avez pas de compte?<a type="submit" routerLink="/register"  class="register-tab sign-in popup-with-zoom-anim">S'inscrire</a></div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<div class="margin-top-15"></div>
+
+</div>

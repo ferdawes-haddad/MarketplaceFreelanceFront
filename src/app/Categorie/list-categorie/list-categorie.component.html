@@ -1,0 +1,117 @@
+<div class="gray">
+    <div id="wrapper">
+
+        <app-headear-utilisateur></app-headear-utilisateur>
+
+        <div class="dashboard-container">
+
+            <app-sidebar></app-sidebar>
+            <div class="dashboard-content-container" data-simplebar>
+                <div class="dashboard-content-inner">
+
+                    <div class="dashboard-headline">
+                        <h3>List des categories</h3>
+
+                        <nav id="breadcrumbs" class="dark">
+                            <ul>
+                                <li><a href="#">Accueil</a></li>
+                                <li><a href="#">Profil</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+
+                    <p-toast></p-toast>
+                    <div class="card">
+                        <p-toolbar styleClass="p-mb-4">
+                            <ng-template pTemplate="left">
+                                <a pButton pRipple href="#small-dialog-4" class="popup-with-zoom-anim button dark ripple-effect p-button-success p-mr-2"><i class="pi pi-plus"></i> Ajout Categorie </a>
+                                <a pButton pRipple [label]="Delete" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedCategories()" [disabled]="!selectedCategories || !selectedCategories.length"></a>
+                            </ng-template>
+                        </p-toolbar>
+
+                        <p-table #dt [value]="categorie" [rows]="10" [paginator]="true" [globalFilterFields]="['name']"
+                            [(selection)]="selectedCategories" [rowHover]="true" dataKey="id"
+                            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+                            <ng-template pTemplate="caption">
+                                <div class="p-d-flex p-ai-center p-jc-between">
+                                    <span class="p-input-icon-left">
+                                        <i class="pi pi-search"></i>
+                                        <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search..." />
+                                    </span>
+                                </div>
+                            </ng-template>
+
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th style="width: 3rem">
+                                        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                                    </th>
+                                    <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
+                                    <th pSortableColumn="description">Description <p-sortIcon field="description"></p-sortIcon></th>                                
+                                    <th></th>
+                                </tr>
+                            </ng-template>
+                        
+                        
+                            <ng-template pTemplate="body" let-cat>
+                                <tr>
+                                    <td>
+                                        <p-tableCheckbox [value]="Categorie"></p-tableCheckbox>
+                                    </td>
+                                    <td>{{cat.name}}</td>
+                                    <td>{{cat.description}}</td>                            
+                                    <td>
+                                        <a pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2 ripple-effect ico" title="Edit" (click)="updateCategorie(cat.id)" type="submit"></a>
+                                        <a pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning ripple-effect ico" title="Remove" (click)="deleteCategorie(cat.id)" type="submit"></a>
+                                    </td>
+                                </tr>
+                            </ng-template>
+                             
+                            <ng-template pTemplate="summary">
+                                <div class="p-d-flex p-ai-center p-jc-between">
+                                    Au total il y a {{categorie ? categorie.length : 0 }} categories.
+                                </div>
+                            </ng-template>
+                        </p-table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="small-dialog-4" class="zoom-anim-dialog mfp-hide dialog-with-tabs">
+    <div class="sign-in-form">
+
+		<ul class="popup-tabs-nav">
+			<li><a href="#tab">Ajout Categorie</a></li>
+		</ul>
+
+		<div class="popup-tabs-container">
+
+			<!-- Tab -->
+			<div class="popup-tab-content" id="tab">
+				
+				<!-- Welcome Text -->
+				<div class="welcome-text">
+					<h3>Categorie d'emploi</h3>
+				</div>
+					
+				<!-- Form -->
+				<form (ngSubmit)="addCategorie()" id="send-pm">
+                    <input type="text" class="form-control with-border" placeholder="Titre de categorie" name="name" [(ngModel)]="cat.name" required>
+					<textarea name="textarea" cols="10" placeholder="Message" class="with-border" required [(ngModel)]="cat.description"></textarea>
+                    <!-- Button -->
+
+                    <div class="col-xl-12">
+                        <a class="button full-width button-sliding-icon ripple-effect big margin-top-10 mfp-close" type="submit" (click)="addCategorie()">
+                            <i class="icon-material-outline-arrow-right-alt "></i> Ajout Categorie
+                        </a>
+                    </div>
+				</form>
+
+			</div>
+
+		</div>
+	</div>
+</div>

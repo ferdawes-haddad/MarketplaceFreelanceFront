@@ -1,0 +1,21 @@
+ <div class="col-xl-6">
+
+    <div class="welcome-text">
+        <h3>Saisir votre skills</h3>
+    </div> 
+    
+    <form (ngSubmit)="addSkills()">
+
+        <div class="input-with-icon-left ">
+            <i class="icon-material-outline-add"></i>
+            <input type="text" class="input-text with-border" name="titre" placeholder="Saisir votre skills" [(ngModel)]="s.titre"  multiple="oui"/>
+        </div>
+    
+        <a class="button margin-top-35 full-width button-sliding-icon ripple-effect mfp-close" type="submit" (click)="addSkills()">Ajouter 
+            <i class="icon-material-outline-arrow-right-alt"></i>
+        </a>
+    
+    </form>
+
+</div>
+

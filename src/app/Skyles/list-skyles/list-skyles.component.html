@@ -1,0 +1,93 @@
+<div class="gray">
+    <div id="wrapper">
+    
+        <app-headear-utilisateur></app-headear-utilisateur>
+        <div class="dashboard-container">
+    
+            <app-sidebar></app-sidebar> 
+            <div class="dashboard-content-container" data-simplebar>
+                <div class="dashboard-content-inner" >
+                            
+                    <div class="section-headline margin-bottom-30">
+                        <h4>List des Skills</h4>
+
+                        <nav id="breadcrumbs" class="dark">
+                            <ul>
+                                <li><a href="#">Accueil</a></li>
+                                <li><a href="#">Profil</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+
+                    <div class="card">
+    
+                        <p-toolbar styleClass="p-mb-4">
+                            <ng-template pTemplate="right">
+                                <a pButton pRipple href="#small-dialog-3" class="popup-with-zoom-anim p-button-success p-mr-2" icon="pi pi-plus" label="nouveau skill">  </a>
+                                <!-- <button pButton pRipple label="nouveau skill" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openNew()"></button> -->
+                                <button pButton pRipple [label]="Delete" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedSkillsEmplois()" [disabled]="!selectedSkillsEmplois || !selectedSkillsEmplois.length"></button>
+                            </ng-template>
+                        </p-toolbar> 
+
+                        <p-table #dt [value]="skillsEmp" [rows]="10" [paginator]="true"
+                            [globalFilterFields]="['titre','type']" [(selection)]="selectedSkillsEmplois" [rowHover]="true" dataKey="id"
+                            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+                            <ng-template pTemplate="caption">
+                                <div class="p-d-flex p-ai-center p-jc-between">
+                                    <span class="p-input-icon-left">
+                                        <i class="pi pi-search"></i>
+                                        <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search..." />
+                                    </span>
+                                </div>
+                            </ng-template>
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th style="width: 3rem">
+                                        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                                    </th>
+                                    <th pSortableColumn="titre">Titre <p-sortIcon field="titre"></p-sortIcon></th>
+                                    <th pSortableColumn="type">Type <p-sortIcon field="type"></p-sortIcon></th>
+                                    <th></th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-skillsEmplois>
+                                <tr>
+                                    <td>
+                                        <p-tableCheckbox [value]="skillsEmplois"></p-tableCheckbox>
+                                    </td>
+                                    <td>{{skillsEmplois.titre}}</td>
+                                    <td>{{skillsEmplois.type}}</td>                                    
+                                    <td>
+                                        <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="updateSkyles(skillsEmplois.id)"></button>
+                                        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteSkyles(skillsEmplois.titre, skillsEmplois.id)"></button>
+                                    </td>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="summary">
+                                <div class="p-d-flex p-ai-center p-jc-between">
+                                    Au total il y a {{skillsEmp ? skillsEmp.length : 0 }} Skills.
+                                </div>
+                            </ng-template>
+                    </p-table>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    
+    </div>
+</div>
+
+<div id="small-dialog-3" class="zoom-anim-dialog mfp-hide dialog-with-tabs">
+	<div class="sign-in-form">
+		<ul class="popup-tabs-nav">
+			<li><a href="#tab">Ajout skills</a></li>
+		</ul>
+
+		<div class="popup-tabs-container">
+			<div class="popup-tab-content" id="tab">
+                <app-ajout-skyles></app-ajout-skyles>                
+			</div>
+		</div>
+	</div>
+</div>

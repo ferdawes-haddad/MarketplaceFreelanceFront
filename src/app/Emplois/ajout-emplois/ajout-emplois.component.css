@@ -1,0 +1,9 @@
+.p-rating .p-rating-icon {
+    color: #495057;
+    margin-left: 0.5rem;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    font-size: 1.143rem;
+    width: 18.3px;
+    height: 17.6px;
+    padding: 0px;
+  }

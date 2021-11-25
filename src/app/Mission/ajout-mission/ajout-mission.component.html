@@ -1,0 +1,130 @@
+<div class="gray">
+<div id="wrapper">
+
+<div class="dashboard-container">
+
+	<app-sidebar></app-sidebar>
+
+	<div class="dashboard-content-container" data-simplebar>
+		<div class="dashboard-content-inner" >
+
+			<div class="dashboard-headline">
+				<h3>Missions</h3>
+				<nav id="breadcrumbs" class="dark">
+					<ul>
+						<li><a href="#">Accueil</a></li>
+                        <li><a href="#">Profil</a></li>
+                        <li>Publier une Mission</li>
+					</ul>
+				</nav>
+			</div>
+
+			<div class="row">
+				<div class="col-xl-12">
+					<div class="dashboard-box margin-top-10">
+
+						<div class="headline  padding-top-10 padding-bottom-15 col-sm-12">
+							<h3><i class="icon-feather-folder-plus"></i> Ajout une mission</h3>
+						</div>
+
+                        <div class="content with-padding padding-bottom-10" >
+                            <div class="dashboard-box-list">
+                               
+                                <form (ngSubmit)="addMiss()">
+                                    
+                                    <div class="col-xl-12">
+                                        <div class="submit-field">
+                                            <h5>Titre Mission</h5>
+                                            <input type="text"  class="form-control with-border" name="titre" [(ngModel)]="m.titre">
+                                        </div>
+                                    </div> 
+                                    
+                                    <div class="col-xl-12">
+                                        <div class="submit-field">
+                                            <h5>Description</h5>
+                                            <input type="textarea"  class="form-control with-border" name="desc" [(ngModel)]="m.description">
+                                        </div>
+                                    </div>
+                        
+                                    <div class="col-xl-12">
+                                        <div class="submit-field">
+                                            <h5>Nature de la demande</h5>                                                  
+                                            <select class="selectpicker with-border" data-size="7" title="Choisir la nature de la mission" id="nature_demande" name="nature_demande" [(ngModel)]="m.nature_demande">
+                                                <option *ngFor="let elt of ND" [value]="elt.nature_demande">{{elt.nature_demande}}</option> 
+                                            </select>                                               
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-xl-12">
+                                        <div class="submit-field">
+                                            <h5>Date de création</h5>
+                                            <input type="date"  class="form-control with-border" name="date_creation" [(ngModel)]="m.date_creation">
+                                        </div>
+                                    </div>
+                        
+                                    <div class="col-xl-12">
+                                        <div class="submit-field">
+                                            <h5>Date de Livraison</h5>
+                                            <input type="date"  class="form-control with-border" name="date_livraison" [(ngModel)]="m.date_livraison">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-xl-12">
+                                        <div class="submit-field">
+                                            <h5>Budget</h5>
+                                            <input type="integer"  class="form-control with-border" name="budget" [(ngModel)]="m.budget">
+                                        </div>
+                                    </div>
+                        
+                                    <div class="col-xl-12">
+                                        <div class="submit-field">
+                                            <h5>Addresse</h5>
+                                            <div class="input-with-icon">
+                                                <div id="autocomplete-container">
+                                                    <input id="autocomplete-input" class="form-control with-border" type="text" placeholder="Address" name ="adresse" [(ngModel)]="m.adresse">
+                                                </div>
+                                                <i class="icon-material-outline-location-on"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                
+                                    <div class="col-xl-12">
+                                        <div class="submit-field">
+                                            <h5>User Id</h5>
+                                            <input type="text"  class="form-control with-border" name="user_id" [(ngModel)]="m.user_id">
+                                        </div>
+                                    </div>
+                        
+                                    <div class="col-xl-12">
+                                        <div class="submit-field">
+                                            <h5>Categorie Id</h5>
+                                            <input type="text"  class="form-control with-border" name="categories_id" [(ngModel)]="m.categories_id">
+                                        </div>
+                                    </div>
+                                    
+
+                                    <div class="col-xl-12" >
+                                        <a (click)="addMiss()" class="button ripple-effect big margin-top-30" type="submit"><i class="icon-feather-plus"></i> Publier une mission</a>
+                                    </div>
+                                  
+                                  </form>
+                                                                       
+                            </div>
+                        </div>
+
+					</div>
+				</div>
+
+			</div>
+			<!-- Row / End -->
+
+		</div>
+	</div>
+	<!-- Dashboard Content / End -->
+
+</div>
+<!-- Dashboard Container / End -->
+
+</div>
+<!-- Wrapper / End -->
+</div>

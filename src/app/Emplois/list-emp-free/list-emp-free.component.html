@@ -1,0 +1,60 @@
+<div>
+
+    <div id="wrapper">
+
+        <app-headear-utilisateur></app-headear-utilisateur>
+
+        <div class="dashboard-container">
+            <app-sidebar></app-sidebar>
+            <div class="dashboard-content-container" data-simplebar>
+                <div class="dashboard-content-inner">
+                    <p-table #dt [value]="emplois" [rows]="10" [paginator]="true" [globalFilterFields]="['titre','adresse','salaire']" [(selection)]="selectedEmplois"
+                        [rowHover]="true" dataKey="id" currentPageReportTemplate="Affichage {first} à {last} de {totalRecords} emplois" [showCurrentPageReport]="true">
+                        <ng-template pTemplate="caption">
+                            <div class="p-d-flex p-ai-center p-jc-between">
+                                <span class="p-input-icon-left">
+                                    <i class="pi pi-search"></i>
+                                    <input pInputText type="text"
+                                        (input)="dt.filterGlobal($event.target.value, 'contains')"
+                                        placeholder="Recherche..." />
+                                </span>
+                            </div>
+                        </ng-template>
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th style="width: 3rem">
+                                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                                </th>
+                                <th pSortableColumn="titre">Titre <p-sortIcon field="titre"></p-sortIcon></th>
+                                <th pSortableColumn="image">Image <p-sortIcon field="image"></p-sortIcon></th>
+                                <th pSortableColumn="salaire">Prix <p-sortIcon field="salaire"></p-sortIcon></th>
+                                <th pSortableColumn="adresse">Adresse <p-sortIcon field="adresse"></p-sortIcon></th>
+                                <th pSortableColumn="date_creation">Date de création <p-sortIcon field="date_creation"></p-sortIcon></th>
+                                <th pSortableColumn="categorie">Categorie <p-sortIcon field="categorie"></p-sortIcon></th>
+                                <th pSortableColumn="rating">Reviews <p-sortIcon field="rating"></p-sortIcon></th>
+                                <th></th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-emp>
+                            <tr>
+                                <td>ww
+                                    <p-tableCheckbox [value]="emp"></p-tableCheckbox>
+                                </td>
+                                <td>{{emp.titre}}</td>
+                                <td _ngcontent-obt-c114=""><img _ngcontent-obt-c114="" width="100" class="p-shadow-4" src="http://127.0.0.1:8000/img/{{emp.image}}jpg" alt="Bamboo Watch">{{emp.img}}</td>
+                                <td>{{emp.salaire | currency:' DT '}}</td>
+                                <td>{{emp.adresse}}</td>
+                                <td>{{emp.date_creation}}</td>
+                                <td>{{emp.categories_name.name}}</td>
+                                <td><p-rating [ngModel]="emp.rating" [readonly]="true" [cancel]="false"></p-rating></td>
+                                <td>
+                                    <button pButton pRipple label="Postuler maintenant" icon="pi pi-envelope" class="p-button-success p-mr-2" (click)="getMail(user.email)"></button>
+                                </td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

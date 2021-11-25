@@ -1,0 +1,78 @@
+<div>
+    <div id="titlebar" class="gradient">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Log In</h2>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-5 offset-xl-3">
+                <div class="login-register-page">
+                   
+                    <div class="welcome-text">
+                        <h3>Nous sommes heureux de vous revoir!</h3>
+                        <span>Vous n'avez pas de compte? <a href="pages-register.html">S'inscrire!</a></span>
+                    </div>
+
+                    <form (ngSubmit)="login()" [formGroup]= "form">
+                        <div class="row">
+                            <!--mail-->
+                            <div class="input-with-icon-left col-md-12">
+                                <div class="submit-field">
+                                    <div class="form-group">
+                                        <i class="icon-material-baseline-mail-outline"></i>
+                                        <input type="text" class="form-control" name="email" placeholder="Entrer votre adresse mail" 
+                                            formControlName="email" [ngClass]="{'is-invalid' : submitted && f.email.errors}" [(ngModel)]="user.email"/>
+                                        <div *ngIf="submitted && f.email.errors" class="invalid.feedback">
+                                             <div *ngIf="f.email.errors.email"> l'email doit être une adresse valide </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                                    
+                            <!--Password-->
+                            <div class="input-with-icon-left col-md-12">
+                                <div class="submit-field">
+                                    <div class="form-group">
+                                        <i class="icon-material-outline-lock"></i>
+                                        <input type="password" class="form-control" name="password" formControlName="password" placeholder="Entrer votre adresse mot de passe" 
+                                            [ngClass]="{'is-invalid' : submitted && f.password.errors}" [(ngModel)]="user.password"/>
+                                        <div *ngIf="submitted && f.password.errors" class="invalid.feedback">
+                                            <div *ngIf="f.password.errors.required"> le mot de passe est oblégatoire </div>
+                                            <div *ngIf="f.password.errors.minlength"> le mot de passe doit contenir au moins 6 caractères </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>  
+                            
+                            <a href="#" class="forgot-password">Mot de passe oublié?</a>
+
+                            <div class="col-xl-12">
+                                <a class="button full-width button-sliding-icon ripple-effect big margin-top-10 mfp-close" type="submit" (click)="login()">
+                                    <i class="icon fa-power-off fa-fw"></i> Se connecter
+                                </a>
+                            </div>
+                        
+                        </div>
+                        
+                    </form>
+                    
+                    <div class="social-login-separator"><span>or</span></div>
+                    <div class="social-login-buttons">
+                        <button class="facebook-login ripple-effect"><i class="icon-brand-facebook-f"></i> Connectez-vous via Facebook</button>
+                        <button class="google-login ripple-effect"><i class="icon-brand-google-plus-g"></i> Connectez-vous via Google+</button>
+                    </div>
+
+                </div>
+    
+            </div>
+        </div>
+    </div>
+    <div class="margin-top-70"></div>   
+</div>

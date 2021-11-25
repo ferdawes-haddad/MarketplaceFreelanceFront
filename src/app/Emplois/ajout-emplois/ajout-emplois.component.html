@@ -1,0 +1,257 @@
+<div class="gray">
+    <div id="wrapper">
+
+        <app-headear-utilisateur></app-headear-utilisateur>
+
+        <div class="dashboard-container"> 
+
+            <app-sidebar></app-sidebar>
+            <div class="dashboard-content-container" data-simplebar>
+                <div class="dashboard-content-inner">
+
+                    <div class="dashboard-headline">
+                        <h3>Publier un Emploi</h3>
+
+                        <nav id="breadcrumbs" class="dark">
+                            <ul>
+                                <li><a href="/">Accueil</a></li>
+                                <li><a href="#">Profil</a></li>
+                                <li>Publier un Emploi</li>
+                            </ul>
+                        </nav>
+                    </div>
+
+                    <p-toolbar styleClass="p-mb-4">
+                        <ng-template pTemplate="left">
+                            <a pButton pRipple href="#small-dialog-4" class="popup-with-zoom-anim button dark ripple-effect p-button-success p-mr-2"><i class="icon-feather-plus"></i> Ajout Categorie </a>               
+                        </ng-template>
+
+                        <ng-template pTemplate="right">
+                            <a pButton pRipple href="#small-dialog-3" class="popup-with-zoom-anim button p-mr-2 p-d-inline-block" icon="pi pi-plus" label="Ajout Skills">  </a>
+                        </ng-template>
+
+                    </p-toolbar>
+
+                    
+
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="dashboard-box margin-top-0">
+
+                                <div class="headline">
+                                    <h3><i class="icon-feather-folder-plus"></i> Formulaire d'emploi</h3>
+                                </div>
+
+                                <div class="content with-padding padding-bottom-10">
+                                    <div class="dashboard-box-list">
+                                        <form (ngSubmit)="addEmplois()" >
+
+                                            <div class="content with-padding padding-bottom-0">
+                                                <div class="row">
+ 
+                                                    <!--image--> 
+                                                    <!-- <div class="col-auto">
+                                                        <div class="avatar-wrapper" data-tippy-placement="bottom"
+                                                            title="Change Avatar">
+                                                            <img class="profile-pic" [src]="url ? url : 'assets/images/user-avatar-placeholder.png' "/>
+                                                            <div class="upload-button"></div>
+                                                            <input class="file-upload" type="file" (change)="onselectFile($event)" name="image" required [(ngModel)]="emplois.image">
+                                                        </div>
+                                                    </div> -->
+
+                                                    <!-- tab3a image onAvatarSelect($event) & back -->
+                                                    <div card-avatar class="col-auto"> 
+                                                        <label class="avatar-wrapper" for="fileInput">
+                                                          <img [src]="url ? url : 'assets/images/user-avatar-placeholder.png'"  src="{{blob}}" class="rounded-circle img-border gradient-summer width-150" />
+                                                          <div class="upload-button"></div>
+                                                          <div class="background"></div>
+                                
+                                                        </label>
+
+                                                        <input id="fileInput"  type="file" name="image" (change)="onAvatarSelect($event)" required [(ngModel)]="emplois.image" >
+                                                    </div>
+
+                                                    <!-- <input type="file"  name="myFile" (change)="fileEvent($event)" />
+                                                    <button>Upload Image</button> -->
+
+                                                    <div class="col">
+                                                        <div class="row">
+
+                                                            <!--Titre-->
+                                                            <div class="col-xl-6">
+                                                                <div class="submit-field">
+                                                                    <h5>Titre d'emploi</h5>
+                                                                    <input type="text" class="form-control with-border" name="titre" [(ngModel)]="emplois.titre">
+                                                                </div>
+                                                            </div>
+
+                                                            <!--salaire-->
+                                                            <div class="col-xl-6">
+                                                                <div class="submit-field">
+                                                                    <h5>Salaire</h5>
+                                                                    <div class="input-with-icon">
+                                                                        <div class="autocomplete-container">
+                                                                            <input class="with-border" type="text" placeholder="Min" name="salaire" [(ngModel)]="emplois.salaire">
+                                                                            <i class="currency">DT</i>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!--adresse-->
+                                                            <div class="col-xl-6">
+                                                                <div class="submit-field">
+                                                                    <h5>Addresse</h5>
+                                                                    <div class="input-with-icon">
+                                                                        <div id="autocomplete-container">
+                                                                            <input id="autocomplete-input" class="form-control with-border" placeholder="Adresse" 
+                                                                                name="=adresse" type="text" [(ngModel)]="emplois.adresse">
+                                                                        </div>
+                                                                        <i class="icon-material-outline-location-on"></i>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!--categorie -->
+                                                            <div class="col-xl-6">
+                                                                <div class="submit-field">
+                                                                    <h5>Catégories</h5>
+                                                                    <select class="selectpicker with-border form-control"  data-size="7" title="Select categorie d'emplois" name="categories"
+                                                                        [(ngModel)]="emplois.categories_id">
+                                                                        <option *ngFor="let c of categorie" [value]="c.id"> {{c.name}} </option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xl-12">
+                                                        <div class="row">
+
+                                                            <!--skyles technique-->
+                                                            <div class="col-xl-6">
+                                                                <div class="submit-field">
+                                                                    <h5>Compétence technique</h5>
+                                                                    <select class="selectpicker with-border form-control " data-size="7" title="Compétence technique"
+                                                                        name="skyles_id" [(ngModel)]="emploisSkyles.skills_emplois_id">
+                                                                        <option *ngFor="let emptech of empSkylesTechnique" [value]="emptech.id">{{emptech.titre}} </option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+
+                                                            <!--skyles fonctionnel -->
+                                                            <div class="col-xl-6">
+                                                                <div class="submit-field">
+                                                                    <h5>Compétence fonctionnels</h5>
+                                                                    <select class="selectpicker with-border form-control " data-size="7" title="Compétence fonctionnel"
+                                                                        name="skyles_id" [(ngModel)]="emploisSkyles.skills_emplois_id">
+                                                                        <option *ngFor="let empfonc of empSkylesFonctionnel" [value]="empfonc.id">{{empfonc.titre}} </option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xl-12">
+
+                                                        <div class="row">
+
+                                                            <!--Date Creation-->
+                                                            <div class="col-xl-6">
+                                                                <div class="submit-field">
+                                                                    <h5>Date Creation</h5>
+                                                                    <input type="date" class="form-control with-border" name="date_creation" [(ngModel)]="emplois.date_creation">
+                                                                </div>
+                                                            </div>
+
+                                                            <!-- rating -->
+                                                            <div class="col-xl-6" style=" display: flex; flex-direction: column; justify-content: flex-end;">
+                                                                <div class="submit-field">
+                                                                    <p-rating type="text" class="form-control with-border" [(ngModel)]="emplois.rating" name="rating" [cancel]="false"></p-rating>
+                                                                </div>
+                                                            </div>
+    
+                                                        </div>
+                                                    </div>
+
+                                                    <!--description-->
+                                                    <div class="col-xl-12">
+                                                        <div class="submit-field">
+                                                            <h5>Description</h5>
+                                                            <input type="textarea" class="form-control with-border" name="description" [(ngModel)]="emplois.description">
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="col-xl-12">
+                                                    <a (click)="addEmplois()" class="button ripple-effect big margin-top-30" type="submit">
+                                                        <i class="icon-feather-plus"></i> Postuler un emploi</a>
+                                                </div>
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>                  
+                    
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div id="small-dialog-4" class="zoom-anim-dialog mfp-hide dialog-with-tabs">
+    <div class="sign-in-form">
+
+		<ul class="popup-tabs-nav">
+			<li><a href="#tab">Ajout Categorie</a></li>
+		</ul>
+
+		<div class="popup-tabs-container">
+
+			<!-- Tab -->
+			<div class="popup-tab-content" id="tab">
+				
+				<!-- Welcome Text -->
+				<div class="welcome-text">
+					<h3>Categorie d'emploi</h3>
+				</div>
+					
+				<!-- Form -->
+				<form (ngSubmit)="addCategorie()" id="send-pm">
+                    <input type="text" class="form-control with-border" placeholder="Titre de categorie" name="name" [(ngModel)]="cat.name" required>
+					<textarea name="textarea" cols="10" placeholder="Message" class="with-border" required [(ngModel)]="cat.description"></textarea>
+                    <!-- Button -->
+
+                    <div class="col-xl-12">
+                        <a class="button full-width button-sliding-icon ripple-effect big margin-top-10 mfp-close" type="submit" (click)="addCategorie()">
+                            <i class="icon-material-outline-arrow-right-alt "></i> Ajout Categorie
+                        </a>
+                    </div>
+				</form>
+
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<div id="small-dialog-3" class="zoom-anim-dialog mfp-hide dialog-with-tabs">
+	<div class="sign-in-form">
+		<ul class="popup-tabs-nav">
+			<li><a href="#tab">Ajout skills</a></li>
+		</ul>
+
+		<div class="popup-tabs-container">
+			<div class="popup-tab-content" id="tab">
+                <app-ajout-skyles></app-ajout-skyles>                
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>MarketplaceFront</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <!-- CSS-->
+  <link  rel="stylesheet" href="assets/css/style.css">
+  <link  rel="stylesheet" href="assets/css/colors/blue.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+  <!-- Admin -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>AdminLTE 2 | Dashboard</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.7 -->
+  <link rel="stylesheet" href="assets\admin\bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="assets\admin\bower_components/font-awesome/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="assets\admin\bower_components/Ionicons/css/ionicons.min.css">
+  <!-- jvectormap -->
+  <link rel="stylesheet" href="assets\admin\bower_components/jvectormap/jquery-jvectormap.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="assets\admin/css/AdminLTE.min.css">
+  <!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+  <link rel="stylesheet" href="assets\admin/css/skins/_all-skins.min.css">
+
+  <!-- Google Font -->
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+
+  <link rel="stylesheet" href="assets\theme.css">
+
+</head>
+<body>
+	
+  <app-root></app-root>
+  
+  <!-- Scripts -->
+<script src="assets/js/jquery-3.3.1.min.js"></script>
+<script src="assets/js/jquery-migrate-3.0.0.min.js"></script>
+<script src="assets/js/mmenu.min.js"></script>
+<script src="assets/js/tippy.all.min.js"></script>
+<script src="assets/js/simplebar.min.js"></script>
+<script src="assets/js/bootstrap-slider.min.js"></script>
+<script src="assets/js/snackbar.js"></script>
+<script src="assets/js/clipboard.min.js"></script>
+<script src="assets/js/counterup.min.js"></script>
+<script src="assets/js/magnific-popup.min.js"></script>
+<script src="assets/js/slick.min.js"></script>
+<script src="assets/js/custom.js"></script>
+<script src="assets/js/bootstrap-select.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
+
+<!-- Snackbar // documentation: https://www.polonel.com/snackbar/ -->
+<script>
+// Snackbar for user status switcher
+$('#snackbar-user-status label').click(function() { 
+	Snackbar.show({
+		text: 'Your status has been changed!',
+		pos: 'bottom-center',
+		showAction: false,
+		actionText: "Dismiss",
+		duration: 3000,
+		textColor: '#fff',
+		backgroundColor: '#383838'
+	}); 
+}); 
+</script>
+
+<!-- Google Autocomplete -->
+<script>
+	function initAutocomplete() {
+		 var options = {
+		  types: ['(cities)'],
+		  // componentRestrictions: {country: "us"}
+		 };
+
+		 var input = document.getElementById('autocomplete-input');
+		 var autocomplete = new google.maps.places.Autocomplete(input, options);
+	}
+
+	// Autocomplete adjustment for homepage
+	if ($('.intro-banner-search-form')[0]) {
+	    setTimeout(function(){ 
+	        $(".pac-container").prependTo(".intro-search-field.with-autocomplete");
+	    }, 300);
+	}
+
+</script>
+
+<!-- Google API -->
+<script src="../../../maps.googleapis.com/maps/api/js601c?key=AIzaSyAgeuuDfRlweIs7D6uo4wdIHVvJ0LonQ6g&amp;libraries=places&amp;callback=initAutocomplete"></script>
+
+
+<!-- ADMIN -->
+
+<!-- <script src="assets/admin/bower_components/jquery/dist/jquery.min.js"></script> -->
+<!-- <script src="assets/admin/bower_components/bootstrap/dist/js/bootstrap.min.js"></script> -->
+<script src="assets/admin/bower_components/fastclick/lib/fastclick.js"></script>
+<script src="assets/admin/js/adminlte.min.js"></script>
+<script src="assets/admin/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
+<script src="assets/admin/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<script src="assets/admin/bower_components/chart.js/Chart.js"></script> 
+
+
+<script src="assets/admin/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+<script src="assets/admin/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+
+
+<script src="assets/admin/js/pages/dashboard2.js"></script>
+<script src="assets/admin/js/demo.js"></script>
+
+</body>
+</html>
+

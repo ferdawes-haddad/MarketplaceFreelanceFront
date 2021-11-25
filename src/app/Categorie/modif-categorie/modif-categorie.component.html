@@ -1,0 +1,46 @@
+<div class="gray">
+    <div id="wrapper">
+
+        <app-headear-utilisateur></app-headear-utilisateur>
+
+        <div class="dashboard-container">
+
+            <app-sidebar></app-sidebar>
+            <div class="dashboard-content-container" data-simplebar>
+                <div class="dashboard-content-inner">
+
+                    <div class="dashboard-headline">
+                        <h3>Modifer une Categorie</h3>
+
+                        <nav id="breadcrumbs" class="dark">
+                            <ul>
+                                <li><a href="#">Accueil</a></li>
+                                <li><a href="#">Profil</a></li>
+                            </ul>
+                        </nav>
+
+                        <div class="row">
+
+                            <!-- Dashboard Box -->
+                            <div class="col-xl-8">
+                                <div class="dashboard-box margin-top-20">
+                                    <form (ngSubmit)="updateCategorie()" id="send-pm">
+                                        <input type="text" class="form-control with-border" placeholder="Titre de categorie" name="name" [(ngModel)]="categorie.name" required>
+                                        <textarea name="textarea" cols="10" placeholder="Message" class="with-border" required [(ngModel)]="categorie.description"></textarea>
+                                        <!-- Button -->
+                    
+                                        <div class="col-xl-12">
+                                            <a class="button full-width button-sliding-icon ripple-effect big margin-top-10 mfp-close" type="submit" (click)="updateCategorie()">
+                                                <i class="icon-material-outline-arrow-right-alt "></i> Modifier</a>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

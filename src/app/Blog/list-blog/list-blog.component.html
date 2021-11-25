@@ -1,0 +1,95 @@
+<div>
+	<div id="wrapper">
+		<app-headear-utilisateur></app-headear-utilisateur>
+		<div class="dashboard-container">
+
+			<app-sidebar></app-sidebar>
+
+			<div class="dashboard-content-container" data-simplebar>
+				<div class="dashboard-content-inner">
+
+					<div class="dashboard-headline">
+						<h3>Blog</h3>
+						<nav id="breadcrumbs" class="dark">
+							<ul>
+								<li><a href="/">Accueil</a></li>
+								<li><a href="/esn">Profil</a></li>
+								<li>Publier un Blog</li>
+							</ul>
+						</nav>
+					</div>
+
+					
+
+					<div class="card">
+
+						<p-table #dt [value]="blog" [rows]="10" [paginator]="true"
+							[globalFilterFields]="['titre','date']" [(selection)]="selectedBlog" [rowHover]="true"
+							dataKey="id" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+							[showCurrentPageReport]="true">
+							<ng-template pTemplate="caption">
+								<div class="p-d-flex p-ai-center p-jc-between">
+									<span class="p-input-icon-left">
+										<i class="pi pi-search"></i>
+										<input pInputText type="text"
+											(input)="dt.filterGlobal($event.target.value, 'contains')"
+											placeholder="Search..." />
+									</span>
+								</div>
+							</ng-template>
+							<ng-template pTemplate="header">
+								<tr>
+									<th style="width: 3rem">
+										<p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+									</th>
+									<th pSortableColumn="titre">Titre <p-sortIcon field="titre"></p-sortIcon>
+									</th>
+									<th pSortableColumn="image">Image <p-sortIcon field="image"></p-sortIcon>
+									</th>
+								</tr>
+							</ng-template>
+							<ng-template pTemplate="body" let-blogs>
+								<tr>
+									<td>
+										<p-tableCheckbox [value]="blogs"></p-tableCheckbox>
+									</td>
+									<td>{{blogs.titre}}</td>
+									<td><img _ngcontent-obt-c114="" width="100" class="p-shadow-4" src="assets/images/blog-01a.jpg"
+											alt="blogs"></td>
+								</tr>
+							</ng-template>
+						</p-table>
+
+					</div>
+
+					<div class="col-xl-4 col-lg-4 content-left-offset">
+						<div class="sidebar-container margin-top-65">
+
+							<p-carousel [value]="blog" orientation="vertical"
+								[style]="{'max-width':'600px', 'margin-top':'2em'}" verticalViewPortHeight="4000px"
+								[numVisible]="1" [numScroll]="1">
+								<ng-template let-blog pTemplate="item">
+									<div class="blog-item">
+										<a href="pages-blog-post.html" class="blog-compact-item-container">
+											<div class="blog-compact-item">
+												<img src="assets/images/blog-01a.jpg" alt="">
+												<span class="blog-item-tag">{{blog.titre}}</span>
+												<div class="blog-compact-item-content">
+													<ul class="blog-post-tags">
+														<li>{{blog.date}}</li>
+													</ul>
+													<p>{{blog.description}}</p>
+												</div>
+											</div>
+										</a>
+									</div>
+								</ng-template>
+							</p-carousel>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
